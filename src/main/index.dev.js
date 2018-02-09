@@ -25,8 +25,3 @@ require('electron').app.on('ready', () => {
 
 // Require `main` process to boot app
 require('./index')
-
-// unhandledRejection
-process.on('unhandledRejection', (reason, p) => {
-  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason)
-})

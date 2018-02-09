@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'frontend-workflow'
+    name: 'electron-vue-frame'
   }
 </script>
 

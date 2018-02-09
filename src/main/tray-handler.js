@@ -2,8 +2,6 @@ import { app, shell } from 'electron'
 import bootstrapPromise, { logPath, appConfigPath } from './bootstrap'
 import { showWindow } from './window'
 export { openDevtool } from './window'
-export { updateSubscribes } from './subscribe'
-
 // 打开配置文件
 export async function openConfigFile () {
   await bootstrapPromise

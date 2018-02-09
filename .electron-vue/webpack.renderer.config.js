@@ -10,6 +10,7 @@ const BabiliWebpackPlugin = require('babili-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 /**
  * List of node_modules to include in webpack bundle
@@ -18,7 +19,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  * that provide pure *.vue files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
  */
-let whiteListedModules = ['vue']
+let whiteListedModules = ['vue', 'vuex', 'vue-router', 'iview']
 
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
@@ -69,7 +70,10 @@ let rendererConfig = {
             extractCSS: process.env.NODE_ENV === 'production',
             loaders: {
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-              scss: 'vue-style-loader!css-loader!sass-loader'
+              scss: 'vue-style-loader!css-loader!sass-loader',
+              less: 'vue-style-loader!css-loader!less-loader',
+              styl: 'vue-style-loader!css-loader!stylus-loader',
+              stylus: 'vue-style-loader!css-loader!stylus-loader'
             }
           }
         }
@@ -173,6 +177,9 @@ if (process.env.NODE_ENV === 'production') {
       minimize: true
     })
   )
+  if (process.env.npm_config_report) {
+    rendererConfig.plugins.push(new BundleAnalyzerPlugin())
+  }
 }
 
 module.exports = rendererConfig

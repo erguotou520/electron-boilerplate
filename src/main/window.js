@@ -12,8 +12,8 @@ let readyPromise
  */
 export function createWindow () {
   mainWindow = new BrowserWindow({
-    height: 440,
-    width: 800,
+    height: 480,
+    width: 720,
     center: true,
     resizable: false,
     minimizable: false,

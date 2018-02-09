@@ -1,7 +1,6 @@
 import Vue from 'vue'
-import { Row, Col } from 'erguotou-iview/src/components/grid'
-import { Select, Option, OptionGroup } from 'erguotou-iview/src/components/select'
-import AppView from './AppView'
+import { Row, Col } from 'iview/src/components/grid'
+import { Select, Option, OptionGroup } from 'iview/src/components/select'
 import ExternalLink from './ExternalLink'
 
 import {
@@ -22,7 +21,7 @@ import {
   Tooltip,
   Poptip,
   Spin
-} from 'erguotou-iview'
+} from 'iview'
 
 const components = {
   Alert,
@@ -62,5 +61,4 @@ Object.keys(components).forEach(key => {
 })
 
 Vue.prototype.$Message = Message
-Vue.component('AppView', AppView)
 Vue.component('ExternalLink', ExternalLink)

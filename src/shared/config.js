@@ -1,4 +1,5 @@
 const defaultConfig = {
+  enable: true
 }
 
 export default defaultConfig

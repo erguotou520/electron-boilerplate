@@ -6,7 +6,6 @@ import { destroyTray } from './tray'
 import { checkUpdate } from './updater'
 import renderMenu from './menu'
 import './ipc'
-import { stop as stopCommand } from './client'
 import { createWindow, showWindow, getWindow, destroyWindow } from './window'
 import logger from './logger'
 
@@ -45,9 +44,9 @@ bootstrap.then(() => {
     const [appConfig, changed] = data
     if (!changed.length) {
       // 初始化时没有配置则打开页面，有配置则不显示主页面
-      if (!appConfig.configs.length || !appConfig.ssrPath) {
-        showWindow()
-      }
+      // if (!appConfig.configs.length || !appConfig.ssrPath) {
+      showWindow()
+      // }
       renderMenu()
       // renderTray(appConfig)
     }
@@ -83,16 +82,23 @@ app.on('will-quit', e => {
   if (process.env.NODE_ENV === 'development') {
     console.log('will-quit')
   }
-  e.preventDefault()
-  stopCommand().then(() => {
-    destroyWindow()
-    destroyTray()
-    app.exit(0)
-  })
+  // e.preventDefault()
+  destroyWindow()
+  destroyTray()
+  // app.exit(0)
 })
 
 app.on('activate', () => {
   if (getWindow() === null) {
     createWindow()
+  }
+})
+
+// 未捕获的rejections
+process.on('unhandledRejection', (reason, p) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason)
+  } else {
+    logger.log('Unhandled Rejection at: Promise', p, 'reason:', reason)
   }
 })

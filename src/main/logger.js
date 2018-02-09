@@ -18,7 +18,7 @@ const logger = tracer.console({
         fs.createWriteStream(logPath, {
           flags: 'a+'
         }).write(data.output, 'utf8')
-      })
+      }).catch(() => {})
     }
   }
 })
@@ -33,8 +33,8 @@ export function clearLog () {
       // 如果日志文件超出限额
       const size = fs.statSync(logPath).size
       if (size >= LOG_MAX_SIZE) {
-        // 最多保留16*1024字符的日志
-        const readStream = fs.createReadStream(logPath, { start: size - 16 * 1024 - 1, end: size - 1 })
+        // 最多保留64*1024字符的日志
+        const readStream = fs.createReadStream(logPath, { start: size - 64 * 1024 - 1, end: size - 1 })
         const data = []
         readStream.on('data', chunk => {
           data.push(chunk.toString())

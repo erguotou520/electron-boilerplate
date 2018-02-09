@@ -16,8 +16,8 @@ function generateMenus (appConfig) {
     { label: '帮助', submenu: [
       { label: '检查更新', click: () => checkUpdate(true) },
       { label: '查看日志', click: handler.openLog },
-      { label: '项目主页', click: () => { handler.openURL('https://github.com/erguotou520/electron-ssr') } },
-      { label: 'Bug反馈', click: () => { handler.openURL('https://github.com/erguotou520/electron-ssr/issues') } },
+      { label: '项目主页', click: () => { handler.openURL('https://github.com/erguotou520/electron-vue-frame') } },
+      { label: 'Bug反馈', click: () => { handler.openURL('https://github.com/erguotou520/electron-vue-frame/issues') } },
       { label: '捐赠', click: () => { handler.openURL('https://github.com/erguotou520/donate') } },
       { label: '打开开发者工具', click: handler.openDevtool }
     ] },
@@ -28,7 +28,7 @@ function generateMenus (appConfig) {
 
 // 根据配置显示tray tooltip
 function getTooltip (appConfig) {
-  return ''
+  return `应用已${appConfig.enable ? '启用' : '禁用'}`
 }
 
 /**

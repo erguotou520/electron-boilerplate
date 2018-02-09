@@ -36,9 +36,9 @@ export const appConfigDir = app.getPath('userData')
 // 应用配置存储路径
 export const appConfigPath = path.join(appConfigDir, 'gui-config.json')
 // 日志路径
-export const logPath = path.join(appConfigDir, 'logs/client.log')
+export const logPath = path.join(appConfigDir, 'logs/electron-vue-frame.log')
 
-// try fix linux dismiss bug
+// try fix linux tray dismiss bug
 if (isLinux) {
   process.env.XDG_CURRENT_DESKTOP = 'Unity'
 }
