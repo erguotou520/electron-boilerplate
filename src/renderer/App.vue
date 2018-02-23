@@ -1,15 +1,20 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div id="app" class="flex">
+    <router-view class="flex-1"></router-view>
+    <code class="flex-1">{{appConfig}}</code>
   </div>
 </template>
-
 <script>
-  export default {
-    name: 'electron-vue-frame'
+import { mapGetters } from 'vuex'
+export default {
+  name: 'electron-vue-frame',
+  computed: {
+    ...mapGetters(['appConfig'])
   }
+}
 </script>
 
-<style>
-  /* CSS */
+<style lang="stylus">
+@import './assets/styles/variable'
+@import './assets/base.styl'
 </style>

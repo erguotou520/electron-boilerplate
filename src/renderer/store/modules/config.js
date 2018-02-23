@@ -32,5 +32,8 @@ const actions = {
 export default {
   state,
   mutations,
-  actions
+  actions,
+  getters: {
+    appConfig: state => state.appConfig
+  }
 }

@@ -17,8 +17,7 @@ export const readyPromise = new Promise(resolve => {
 
 // 检查nodejs是否安装
 if (!isNodeInstalled) {
-  dialog.showErrorBox('错误', 'nodejs未安装')
-  app.exit(1)
+  dialog.showErrorBox('错误', 'nodejs未安装，请先安装nodejs以免后续功能无法使用')
   // nodejs未安装时自动下载并安装
   // require('./nodejs').init()
 }
@@ -34,7 +33,7 @@ if (process.env.NODE_ENV !== 'development') {
 // 应用配置存储目录
 export const appConfigDir = app.getPath('userData')
 // 应用配置存储路径
-export const appConfigPath = path.join(appConfigDir, 'gui-config.json')
+export const appConfigPath = path.join(appConfigDir, 'electron-vue-frame-config.json')
 // 日志路径
 export const logPath = path.join(appConfigDir, 'logs/electron-vue-frame.log')
 
@@ -48,7 +47,6 @@ if (isLinux) {
  */
 async function init () {
   initIcon()
-  await clearLog()
   await ensureDir(appConfigDir)
   // 判断配置文件是否存在，不存在用默认数据写入
   const configFileExists = await pathExists(appConfigPath)
@@ -57,6 +55,7 @@ async function init () {
   }
   await ensureDir(path.join(appConfigDir, 'logs'))
   await ensureFile(logPath)
+  await clearLog()
 
   if (process.env.NODE_ENV === 'development') {
     console.log('Config file\'s path: %s\nLog file\'s path: %s', appConfigPath, logPath)

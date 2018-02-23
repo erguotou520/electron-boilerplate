@@ -3,7 +3,7 @@ import { appConfig$ } from './data'
 import * as handler from './tray-handler'
 import { checkUpdate } from './updater'
 import { isMac, isWin } from '../shared/env'
-import { disabledTray, enabledTray, enabledHighlightTray, pacTray, pacHighlightTray, globalTray, globalHighlightTray } from '../shared/icon'
+import { trayIcon } from '../shared/icon'
 
 let tray
 
@@ -44,21 +44,7 @@ function updateTray (appConfig) {
 
 // 根据应用状态显示不同的图标
 function setTrayIcon (appConfig) {
-  if (appConfig.enable) {
-    if (appConfig.sysProxyMode === 1) {
-      tray.setImage(pacTray)
-      isMac && tray.setPressedImage(pacHighlightTray)
-    } else if (appConfig.sysProxyMode === 2) {
-      tray.setImage(globalTray)
-      isMac && tray.setPressedImage(globalHighlightTray)
-    } else {
-      tray.setImage(enabledTray)
-      isMac && tray.setPressedImage(enabledHighlightTray)
-    }
-  } else {
-    tray.setImage(disabledTray)
-    isMac && tray.setPressedImage(disabledTray)
-  }
+  tray.setImage(trayIcon)
 }
 
 /**
