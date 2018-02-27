@@ -8,24 +8,26 @@ const state = {
 
 const mutations = {
   // 更新应用配置
-  updateConfig (state, targetConfig) {
+  updateConfig (state, [targetConfig, sync = false]) {
     const changed = getUpdatedKeys(state.appConfig, targetConfig)
     if (changed.length) {
       const extractConfig = {}
       changed.forEach(key => { extractConfig[key] = targetConfig[key] })
       merge(state.appConfig, extractConfig)
       console.log('config updated: ', extractConfig)
+      if (sync) {
+        syncConfig(extractConfig)
+      }
     }
   }
 }
 
 const actions = {
   initConfig ({ commit }, { config, meta }) {
-    commit('updateConfig', config)
+    commit('updateConfig', [config])
   },
   updateConfig ({ getters, commit }, targetConfig) {
-    commit('updateConfig', targetConfig)
-    syncConfig(targetConfig)
+    commit('updateConfig', [targetConfig, true])
   }
 }
 

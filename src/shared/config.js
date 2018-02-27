@@ -1,4 +1,7 @@
 const defaultConfig = {
+
+  // 开机自启动
+  autoLaunch: false,
   enable: true
 }
 

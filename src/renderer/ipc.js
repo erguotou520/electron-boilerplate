@@ -18,7 +18,7 @@ ipcRenderer.on(events.EVENT_APP_NOTIFY_MAIN, (e, { title, body }) => {
 }).on(events.EVENT_RX_SYNC_MAIN, (e, appConfig) => {
   // 同步数据
   console.log('received sync data: %o', appConfig)
-  store.commit('updateConfig', appConfig)
+  store.commit('updateConfig', [appConfig])
 })
 
 /**

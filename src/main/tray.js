@@ -16,6 +16,7 @@ function generateMenus (appConfig) {
     { label: '帮助', submenu: [
       { label: '检查更新', click: () => checkUpdate(true) },
       { label: '查看日志', click: handler.openLog },
+      { label: '查看配置文件', click: handler.openConfigFile },
       { label: '项目主页', click: () => { handler.openURL('https://github.com/erguotou520/electron-vue-frame') } },
       { label: 'Bug反馈', click: () => { handler.openURL('https://github.com/erguotou520/electron-vue-frame/issues') } },
       { label: '捐赠', click: () => { handler.openURL('https://github.com/erguotou520/donate') } },

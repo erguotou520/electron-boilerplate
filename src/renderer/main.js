@@ -7,6 +7,8 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+getInitConfig()
+
 /* eslint-disable no-new */
 new Vue({
   router,
@@ -14,4 +16,3 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-getInitConfig()
